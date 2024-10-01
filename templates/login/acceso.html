@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Acceso - EduSam{% endblock %}
+
+{% block content %}
+    <!-- Main content -->
+    <div class="container login-container">
+        <div class="row">
+            <!-- Left Column: Login Form -->
+            <div class="col-md-6">
+                <div class="login-form">
+                    <h2>Iniciar sesión</h2>
+                    <form action="/acceso" method="POST">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                        </div>
+                        {% with messages = get_flashed_messages() %}
+                            {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endwith %}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Information -->
+            <div class="col-md-6">
+                <div class="info-section">
+                    <h2>¿Qué puedes hacer en EduSam?</h2>
+                    <p>Algunas de las cosas que podés hacer con este sistema son:</p>
+                    <ul>
+                        <li>Inscribirte a materias y exámenes.</li>
+                        <li>Consultar el plan de tu propuesta.</li>
+                        <li>Consultar tu historia académica.</li>
+                        <li>Actualizar tus datos personales.</li>
+                        <li>Recibir alertas sobre períodos de inscripción o vencimiento de exámenes finales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
