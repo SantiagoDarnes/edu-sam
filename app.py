@@ -55,7 +55,7 @@ def horarios_cursadas():
 def validador_certificados():
     return render_template('login/validador_certificados.html')
 
-@app.route('/ayuda_menu')
+@app.route('/ayuda_menu', methods=['GET', 'POST'])
 def ayuda_menu():
     return render_template('login/ayuda_menu.html')
 
