@@ -31,6 +31,24 @@ def acceso():
     else:
         flash("Usuario o contraseña incorrectos. Intenta de nuevo.")
         return redirect(url_for('index'))
+    
+    
+# Ruta recuperar contraseña
+@app.route('/recuperar', methods=['GET', 'POST'])
+def recuperar():
+    if request.method == 'POST':
+        email = request.form['email']
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if user:
+            flash("Se ha enviado un correo con instrucciones para recuperar tu contraseña.", "info",)
+        else:
+            flash("No se encontró un usuario con el correo proporcionado.", "warning")
+        
+        return redirect(url_for('index'))
+    
+    return render_template('login/recuperar.html')
 
 
 # Ruta inicio
