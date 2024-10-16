@@ -1,7 +1,5 @@
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
+from app.extensions import db
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -18,9 +16,3 @@ class User(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-    
-
-if __name__ == '__main__':
-    hash = generate_password_hash('admin')
-    print(check_password_hash(hash, 'admin'))
-
