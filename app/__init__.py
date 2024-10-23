@@ -12,11 +12,13 @@ def create_app(config_class=Config):
     # Register blueprints here
     from app.main import bp as main_bp
     from app.account import bp as account_bp
-    from app.static import bp as static_bp
+    from app.general_info import bp as static_bp
+    from app.gestor_usuarios import bp as gestor_usuario_bp
     
     app.register_blueprint(main_bp)
     app.register_blueprint(account_bp)
     app.register_blueprint(static_bp)
+    app.register_blueprint(gestor_usuario_bp)
     
     
     @app.route("/test")
@@ -24,12 +26,5 @@ def create_app(config_class=Config):
         return "<h1> Es la base </h1>"
     
     print(app.url_map)
-    return app
-
-# Esto no se ejecuta nunca
-if __name__ == "__main__":
-    app = create_app()
     
-    with app.app_context():
-        db.create_all()
-        print("Tablas creadas correctamente.")
+    return app

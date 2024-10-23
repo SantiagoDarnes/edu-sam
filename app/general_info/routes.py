@@ -1,5 +1,5 @@
 from flask import render_template
-from app.static import bp
+from app.general_info import bp
 
 @bp.route('/fechas_examen')
 def fechas_examen():
