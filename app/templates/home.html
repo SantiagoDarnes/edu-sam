@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - EduSam{% endblock %}
+
+{% block sidebar %}
+    <ul class="sidebar-menu">
+        <li><a href="#">Inscripción a Materias</a></li>
+        <li><a href="#">Inscripción a Exámenes</a></li>
+        <li><a href="#">Reportes</a></li>
+        <li><a href="#">Encuestas</a></li>
+        <li><a href="#">Trámites</a></li>
+        <li><a href="#">Mis datos personales</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block top_bar %}
+    <h2>Bienvenido, {{ username }}</h2> 
+{% endblock %}
+
+{% block content %}
+    <h3>Bienvenido a la página principal</h3>
+    <p>Esta es la página principal del Gestor Académico.</p>
+{% endblock %}

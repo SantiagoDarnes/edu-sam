@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EduSam{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    
+    <!-- Font Awesome para los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Incluir archivo de fuentes -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
+    
+    <!-- CSS personalizado -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="navbar-left">
+                <a href="{{ url_for('home.index') }}" class="navbar-brand" style="font-family: 'Ubuntu', sans-serif;">EduSam</a>
+            </div>
+            <div class="navbar-right">
+                <a href="#" class="icon" id="notification-icon"><i class="fas fa-bell"></i></a>
+                <a href="#" class="icon" id="message-icon"><i class="fas fa-envelope"></i></a>
+                <span class="user-name">{{ username }}</span>
+                <div class="profile-menu-container">
+                    <a href="#" class="icon" id="profile-icon"><i class="fas fa-user-circle"></i></a>
+                    <div class="profile-menu" id="profile-menu">
+                        <a href="#" class="menu-item">
+                            <i class="fas fa-cog"></i> Configuración
+                        </a>
+                        <a href="{{ url_for('login.logout') }}" class="menu-item">
+                            <i class="fas fa-sign-out-alt"></i> Salir
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="left-frame">
+                <div class="sidebar">
+                    {% block sidebar %}{% endblock %}
+                </div>
+            </div>
+            <div class="right">
+                <div class="content_header">
+                    <div class="top-bar">
+                        {% block top_bar %}{% endblock %}
+                    </div>
+                </div>
+                <div class="content-frame">
+                    <div class="content">
+                        {% block content %}{% endblock %}
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </main>
+
+    <footer>
+        <p>Footer</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- JavaScript para manejar los desplegables -->
+    <script>
+        $(document).ready(function() {
+            $('#notification-icon').on('click', function() {
+                // Aquí iría el código para desplegar las notificaciones
+                alert('Notificaciones desplegadas');
+            });
+            $('#message-icon').on('click', function() {
+                // Aquí iría el código para desplegar los mensajes
+                alert('Mensajes desplegados');
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Mostrar/Ocultar el menú de perfil
+            $('#profile-icon').on('click', function(event) {
+                event.preventDefault(); // Evitar el comportamiento por defecto
+                $('.profile-menu-container').toggleClass('active');
+            });
+
+            // Cerrar el menú si se hace clic fuera de él
+            $(document).on('click', function(event) {
+                if (!$(event.target).closest('.profile-menu-container').length) {
+                    $('.profile-menu-container').removeClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
