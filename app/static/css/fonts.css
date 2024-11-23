@@ -1,0 +1,13 @@
+/* fonts.css */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&family=Roboto+Slab:wght@400;700&display=swap');
+
+/* Fuente para los elementos del cuerpo */
+body {
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Fuente Ubuntu para el navbar y otros elementos que especificaste */
+.navbar-brand {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+}

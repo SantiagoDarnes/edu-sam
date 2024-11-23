@@ -1,6 +1,8 @@
-from flask import session
-from werkzeug.security import check_password_hash
-from models.user import User
+from functools import wraps
+from flask import redirect, url_for, session, render_template
+from werkzeug.security import check_password_hash, generate_password_hash
+from app.models.user import User
+
 
 class AuthService:
     _instance = None 
@@ -29,3 +31,14 @@ class AuthService:
         if 'user_id' in session:
             return User.query.get(session['user_id'])
         return None
+
+
+# Decorador para requerir autenticación
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        auth_service = AuthService() 
+        if not auth_service.is_authenticated():
+            return render_template('login.html')
+        return f(*args, **kwargs)
+    return decorated_function
