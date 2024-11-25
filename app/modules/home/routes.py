@@ -4,9 +4,9 @@ from app.auth import AuthService, login_required
 
 auth_service = AuthService()
 
-@bp.route('/')
+@bp.route('/student')
 @login_required
-def index():
+def home_student():
     user = auth_service.get_current_user()
     username = user.first_name.title() + ' ' + user.last_name.title()
-    return render_template('home.html', username=username) 
+    return render_template('student/home.html', username=username) 
