@@ -8,4 +8,5 @@ auth_service = AuthService()
 @login_required
 def index():
     user = auth_service.get_current_user()
-    return render_template('home.html', username=user.username)
+    username = user.first_name.title() + ' ' + user.last_name.title()
+    return render_template('home.html', username=username) 

@@ -2,6 +2,7 @@ from functools import wraps
 from flask import redirect, url_for, session, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 from app.models.person import Person
+from app.models.profile import Profile
 
 
 class AuthService:
@@ -14,15 +15,17 @@ class AuthService:
 
     def authenticate(self, username, password):
         user = Person.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password_hash, password):
+        if user and check_password_hash(user.password, password):
             session['username'] = user.username
             session['user_id'] = user.id
+            session['profile'] = Profile.query.get(user.default_profile).name
             return True
         return False
 
     def logout(self):
         session.pop('username', None)
         session.pop('user_id', None)
+        session.pop('profile', None)
 
     def is_authenticated(self):
         return 'username' in session

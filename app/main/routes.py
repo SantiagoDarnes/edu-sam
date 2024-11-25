@@ -9,4 +9,4 @@ auth_service = AuthService()
 @login_required
 def index():
     user = auth_service.get_current_user()
-    return render_template('home.html', username="Santiago Darnes")
+    return redirect(url_for('home.index'))
