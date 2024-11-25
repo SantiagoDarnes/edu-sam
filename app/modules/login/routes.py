@@ -13,7 +13,9 @@ def index():
         
         # Utilizar el AuthService para autenticar
         if auth_service.authenticate(username, password):
-            return redirect(url_for('main.index'))
+
+            if session['profile'] == 'ESTUDIANTE':
+                return redirect(url_for('home.index'))
         else:
             flash("Usuario o contraseña incorrectos. Intenta de nuevo.")
     return render_template('login.html')
