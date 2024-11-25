@@ -1,6 +1,6 @@
 from functools import wraps
-from flask import redirect, url_for, session, render_template
-from werkzeug.security import check_password_hash, generate_password_hash
+from flask import redirect, url_for, session
+from werkzeug.security import check_password_hash
 from app.models.person import Person
 from app.models.profile import Profile
 
@@ -36,12 +36,23 @@ class AuthService:
         return None
 
 
-# Decorador para requerir autenticación
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         auth_service = AuthService() 
         if not auth_service.is_authenticated():
-            return render_template('login.html')
+            return redirect(url_for('login.index'))
         return f(*args, **kwargs)
     return decorated_function
+
+
+def require_profile(profile):
+    def decorator(f):
+        @wraps(f)
+        def wrapped(*args, **kwargs):
+            if session.get('profile') != profile:
+                return redirect(url_for('login.index'))
+            return f(*args, **kwargs)
+        return wrapped
+    return decorator
+
