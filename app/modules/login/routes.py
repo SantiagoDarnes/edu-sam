@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, session
 from app.modules.login import bp
 from app.auth import AuthService
-from app.models.user import User
+from app.models.person import Person
 
 auth_service = AuthService()
 
