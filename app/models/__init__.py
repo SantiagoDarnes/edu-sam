@@ -14,6 +14,7 @@ from app.models.administrator import Administrator
 from app.models.career import Career
 from app.models.department import Department
 from app.models.final_exam import FinalExam
+from app.models.person_profile import PersonProfile
 from app.models.person import Person
 from app.models.profile import Profile
 from app.models.semester import Semester

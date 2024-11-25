@@ -19,6 +19,7 @@ class AuthService:
             session['username'] = user.username
             session['user_id'] = user.id
             session['profile'] = Profile.query.get(user.default_profile).name
+            session['profiles'] = [profile.name for profile in user.profiles]
             return True
         return False
 
@@ -26,6 +27,7 @@ class AuthService:
         session.pop('username', None)
         session.pop('user_id', None)
         session.pop('profile', None)
+        session.pop('profiles', None)
 
     def is_authenticated(self):
         return 'username' in session
@@ -50,8 +52,10 @@ def require_profile(profile):
     def decorator(f):
         @wraps(f)
         def wrapped(*args, **kwargs):
-            if session.get('profile') != profile:
+            if profile not in session['profiles']:
                 return redirect(url_for('login.index'))
+            
+            session['profile'] = profile
             return f(*args, **kwargs)
         return wrapped
     return decorator
