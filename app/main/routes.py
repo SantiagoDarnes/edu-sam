@@ -8,5 +8,5 @@ auth_service = AuthService()
 @bp.route('/')
 @login_required
 def index():
-    user = auth_service.get_current_user()
-    return redirect(url_for('home.index'))
+    if session['profile'] == 'ESTUDIANTE':
+        return redirect(url_for('home.home_student'))
