@@ -6,13 +6,13 @@ class Person(db.Model):
     __tablename__ = 'person'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    identity_number = db.Column(db.String(20), unique=True, nullable=False)
+    identity_number = db.Column(db.Integer, unique=True, nullable=False)
 
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
     default_profile = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
 
-    first_name = db.Column(db.String(100), nullable=False)
+    first_name = db.Column(db.String(100), nullable=False, )
     last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     phone = db.Column(db.String(15))
@@ -33,6 +33,12 @@ class Person(db.Model):
     def check_password(self, password):
         """Verifica si la contraseña es correcta."""
         return check_password_hash(self.password_hash, password)
+    
+    def set_username(self):
+        self.username = self.first_name[0].upper() + self.last_name.split()[0].upper()
+
+    def generate_password(self):
+        self.password = generate_password_hash(self.identity_number)
 
     def __repr__(self):
         return f'<Person {self.username}, ID: {self.identity_number}>'
