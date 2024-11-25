@@ -12,7 +12,7 @@ def index():
         password = request.form['password']
         
         # Utilizar el AuthService para autenticar
-        if auth_service.authenticate(username, password):
+        if auth_service.authenticate(username.upper(), password):
             return redirect(url_for('main.index'))
         else:
             flash("Usuario o contraseña incorrectos. Intenta de nuevo.")
