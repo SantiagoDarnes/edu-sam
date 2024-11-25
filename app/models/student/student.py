@@ -10,7 +10,9 @@ class Student(db.Model):
     enrollment_number = db.Column(db.String(50), unique=True, nullable=False) 
     admission_date = db.Column(db.Date, nullable=False)
 
-    programs = db.relationship('AcademicProgram', secondary='student_program', backref='students')
+    careers = db.relationship('StudentCareer', backref='student')
+    subjects = db.relationship('StudentSubject', backref='student')
 
     def __repr__(self):
         return f'<Student {self.enrollment_number}>'
+    
