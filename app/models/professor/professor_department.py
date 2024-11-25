@@ -4,7 +4,7 @@ from app.extensions import db
 class ProfessorDepartment(db.Model):
     __tablename__ = 'professor_department'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     professor_id = db.Column(db.Integer, db.ForeignKey('professor.id'), nullable=False)
     department_id = db.Column(db.Integer, db.ForeignKey('department.id'), nullable=False)
 

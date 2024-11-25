@@ -4,7 +4,7 @@ from app.extensions import db
 class AccessLevel(db.Model):
     __tablename__ = 'access_level'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(50)) 
     level = db.Column(db.Integer, unique=True, nullable=False)  
 

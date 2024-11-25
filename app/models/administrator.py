@@ -4,7 +4,7 @@ from app.extensions import db
 class Administrator(db.Model):
     __tablename__ = 'administrator'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
     access_level_id = db.Column(db.Integer, db.ForeignKey('access_level.id'), nullable=False)
 
