@@ -5,7 +5,7 @@ from app.extensions import db
 class Person(db.Model):
     __tablename__ = 'person'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     identity_number = db.Column(db.String(20), unique=True, nullable=False)
 
     username = db.Column(db.String(50), unique=True, nullable=False)

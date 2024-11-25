@@ -4,7 +4,7 @@ from app.extensions import db
 class Subject(db.Model):
     __tablename__ = 'subject'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     code = db.Column(db.String(20), unique=True, nullable=False)
     name = db.Column(db.String(100), nullable=False) 
     career_id = db.Column(db.Integer, db.ForeignKey('career.id'), nullable=False)

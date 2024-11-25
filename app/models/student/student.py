@@ -4,7 +4,7 @@ from app.extensions import db
 class Student(db.Model):
     __tablename__ = 'student'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
 
     enrollment_number = db.Column(db.String(50), unique=True, nullable=False) 
