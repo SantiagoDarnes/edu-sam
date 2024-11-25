@@ -10,7 +10,7 @@ class Person(db.Model):
 
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    # default_profile
+    default_profile = db.Column(db.Integer, db.ForeignKey('profile.id'), nullable=False)
 
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100), nullable=False)
@@ -36,3 +36,5 @@ class Person(db.Model):
 
     def __repr__(self):
         return f'<Person {self.username}, ID: {self.identity_number}>'
+
+
