@@ -3,11 +3,7 @@
 {% block title %}Inscripción a Materias - EduSam{% endblock %}
 
 {% block sidebar %}
-    <ul class="sidebar-menu">
-        <li><a href="#">Otras carreras</a></li>
-    </ul>
 {% endblock %}
-
 
 {% block top_bar %}
     <h2>Inscripción a materias</h2> 
@@ -15,13 +11,28 @@
 
 {% block content %}
     <h3>Materias disponibles</h3>
-    {% for subject in subjects %}
-    <!-- Aca tiene que haber algo que lo haga ver como una grilla -->
-        <div>
-            <h3>{{ subject.name }}</h3>
-            <p>Periodo academico: {{ subject.academic_period_id }}</p>
-            <p>Nota para aprobar: {{ subject.min_passing_grade }}</p>
-            <p>Nota para promocionar {{ subject.min_promotion_grade }}</p>
-        </div>
-    {% endfor %}
+    <table class="subjects-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Nota para Aprobar</th>
+                <th>Nota para Promocionar</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.name }}</td>
+                <td>{{ subject.min_passing_grade }}</td>
+                <td>{{ subject.min_promotion_grade }}</td>
+                <td>
+                    <button action = "{{ url_for('subject_registration.register') }}" method="POST" class="enroll-button" data-subject-id="{{ subject.id }}">
+                        Inscribirse
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
