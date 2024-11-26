@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - EduSam{% endblock %}
+
+{% block sidebar %}
+    <ul class="sidebar-menu">
+        <li><a href="#">Otras carreras</a></li>
+    </ul>
+{% endblock %}
+
+
+{% block top_bar %}
+    <h2>Inscripción a materias</h2> 
+{% endblock %}
+
+{% block content %}
+    <h3>Materias disponibles</h3>
+    {% for subject in subjects %}
+    <!-- Aca tiene que haber algo que lo haga ver como una grilla -->
+        <div>
+            <h3>{{ subject.name }}</h3>
+            <p>Periodo academico: {{ subject.academic_period_id }}</p>
+            <p>Nota para aprobar: {{ subject.min_passing_grade }}</p>
+            <p>Nota para promocionar {{ subject.min_promotion_grade }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -10,34 +10,25 @@ auth_service = AuthService()
 @login_required
 @require_profile("ESTUDIANTE")
 def available_subjects():
-    print(Subject.query.all())
-    # user = auth_service.get_current_user()
-    # carrers = StudentCareer.query.filter_by(student_id=user.id).all()
-    # print(carrers)
-    # for career in carrers:
-    #     subjects = Subject.query.filter_by(career_id=career.career_id).all()
-    #     print(subjects)
-    #     # TODO
+    user = auth_service.get_current_user()
+    # careers = StudentCareer.query.filter_by(student_id=user.id).join(Subject.career_id).all()
+    careers = StudentCareer.query.filter_by(student_id=user.id).all()
+    career_id_unique = []
+    for career in careers:
+        if career.career_id not in career_id_unique:
+            career_id_unique.append(career.career_id)
     
-    # subjects = []
-    # for career in carrers.all():
-    #     career...
+    subjects = []
+    for career_id in career_id_unique:
+        for subj in Subject.query.filter_by(career_id=career_id).all():
+            subjects.append({
+                "id":subj.id,
+                "code":subj.code,
+                "name":subj.name,
+                "academic_period_id":subj.academic_period_id,
+                "min_passing_grade":subj.min_passing_grade,
+                "min_promotion_grade":subj.min_promotion_grade
+            })
     
-    return render_template("subject_registration.html")
+    return render_template("subject_registration/subject_registration.html", subjects=subjects)
 
-
-# @bp.route('/subject_registration')
-# @login_required
-# @require_profile('ESTUDIANTE')
-# def home_student():
-#     user = auth_service.get_current_user()
-#     username = user.first_name.title() + ' ' + user.last_name.title()
-#     return render_template('student/home.html', username=username) 
-
-# @bp.route('/professor')
-# @login_required
-# @require_profile('PROFESOR')
-# def home_teacher():
-#     user = auth_service.get_current_user()
-#     username = user.first_name.title() + ' ' + user.last_name.title()
-#     return render_template('professor/home.html', username=username)
