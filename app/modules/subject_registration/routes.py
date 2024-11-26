@@ -37,19 +37,4 @@ def available_subjects():
                 "min_promotion_grade":subj.min_promotion_grade
             })
     
-    return render_template("subject_registration/subject_registration.html", subjects=subjects)
-
-@bp.route("subject_selected/<subject_id>")
-@login_required
-@require_profile("ESTUDIANTE")
-def select_subject(subj):
-    user = auth_service.get_current_user()
-    student_subj = StudentSubject(
-        student_id=Student.query.where(person_id=user.id).first(),
-        subject_id=subj,
-        enrollment_date="2024-11-26",
-        status=1,
-        created_at="2024-11-26 17:32:00.0",
-        updated_at="2024-11-26 17:32:00.0"
-    )
-    # db.add(student_subj)
+    return render_template("student/subject_registration.html", subjects=subjects)
