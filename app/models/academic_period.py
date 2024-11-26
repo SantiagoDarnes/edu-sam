@@ -17,7 +17,6 @@ class AcademicPeriod(db.Model):
     final_exams_inscription_end_date = db.Column(db.Date, nullable=False)  
     is_active = db.Column(db.Boolean, default=False, nullable=False) 
 
-    subjects = db.relationship('Subject', backref='academic_period', lazy=True)
 
     def __repr__(self):
         return f'<AcademicPeriod {self.name}, Semester: {self.dim_semester.name}>'

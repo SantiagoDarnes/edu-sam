@@ -212,3 +212,43 @@ main {
 .sidebar-menu a:hover {
     background-color: #f0f0f0; /* Fondo gris claro al pasar el mouse */
 }
+
+
+
+/* Estilo para la tabla de materias */
+.subjects-table {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    border-collapse: collapse; /* Bordes colapsados para un diseño limpio */
+    margin-top: 20px;
+}
+
+.subjects-table th, .subjects-table td {
+    padding: 10px 15px; /* Espaciado interno */
+    text-align: left; /* Texto alineado a la izquierda */
+    border: 1px solid #ddd; /* Bordes entre celdas */
+}
+
+.subjects-table th {
+    background-color: #f4f4f4; /* Fondo gris claro para el encabezado */
+    font-weight: bold;
+}
+
+.subjects-table tbody tr:hover {
+    background-color: #f9f9f9; /* Fondo diferente al pasar el mouse */
+}
+
+/* Estilo para el botón de inscripción */
+.enroll-button {
+    padding: 8px 12px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.enroll-button:hover {
+    background-color: #005f99; /* Color más oscuro al pasar el mouse */
+}

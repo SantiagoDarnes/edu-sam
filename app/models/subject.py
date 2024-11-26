@@ -16,6 +16,7 @@ class Subject(db.Model):
 
     students = db.relationship('StudentSubject', backref='subject')
     professors = db.relationship('ProfessorSubject', backref='subject')
+    academic_period = db.relationship('AcademicPeriod', backref='subjects')
 
     def __repr__(self):
         return f'<Subject {self.name}, Career: {self.career.name}>'

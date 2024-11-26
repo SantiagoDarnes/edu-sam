@@ -15,26 +15,34 @@ auth_service = AuthService()
 @bp.route('/')
 @login_required
 @require_profile("ESTUDIANTE")
-def available_subjects():
+def index():
     user = auth_service.get_current_user()
-    # careers = StudentCareer.query.filter_by(student_id=user.id).join(Subject.career_id).all()
-    careers = StudentCareer.query.filter_by(student_id=user.id).all()
-    career_id_unique = []
-    for career in careers:
-        if career.career_id not in career_id_unique:
-            career_id_unique.append(career.career_id)
-    
+    student = Student.query.filter_by(person_id=user.id).first()
+    student_careers = StudentCareer.query.filter_by(student_id=student.id).all()
+    academic_period = AcademicPeriod.query.filter_by(is_active=True).first()
+
     subjects = []
-    for career_id in career_id_unique:
-        for subj in Subject.query.filter_by(career_id=career_id).all():
-            
-            subjects.append({
-                "id":subj.id,
-                "code":subj.code,
-                "name":subj.name,
-                "academic_period_id":subj.academic_period_id,
-                "min_passing_grade":subj.min_passing_grade,
-                "min_promotion_grade":subj.min_promotion_grade
-            })
+    for student_career in student_careers:
+        subjects += Subject.query.filter_by(career_id=student_career.career_id, academic_period_id=academic_period.id).all()
     
-    return render_template("subject_registration/subject_registration.html", subjects=subjects)
+    return render_template("student/subject_registration.html", subjects=subjects)
+
+@bp.route('/register', methods=['POST'])
+@require_profile("ESTUDIANTE")
+def register(subject_id):
+    user = auth_service.get_current_user()
+    student = Student.query.filter_by(person_id=user.id).first()
+    student_subject = StudentSubject(student_id=student.id, subject_id=subject_id)
+    db.session.add(student_subject)
+    db.session.commit()
+    return redirect(url_for('subject_registration.index'))
+
+@bp.route('/unregister/<int:subject_id>', methods=['POST'])
+@require_profile("ESTUDIANTE")
+def unregister(subject_id):
+    user = auth_service.get_current_user()
+    student = Student.query.filter_by(person_id=user.id).first()
+    student_subject = StudentSubject.query.filter_by(student_id=student.id, subject_id=subject_id).first()
+    db.session.delete(student_subject)
+    db.session.commit()
+    return redirect(url_for('subject_registration.index'))
