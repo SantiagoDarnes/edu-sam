@@ -1,19 +1,43 @@
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, session, request
 from app.modules.exam_registration import bp
 from app.auth import AuthService, login_required, require_profile
-from app.models.subject import Subject
+from app.models.final_exam import FinalExam
 from app.models.student.student_subject import StudentSubject
-# No tengo idea de como usar AcademicPeriod
+
 
 auth_service = AuthService()
 
-@bp.route("/")
+@bp.route("/", methods=['GET', 'POST'])
 @login_required
 @require_profile("ESTUDIANTE")
-def available_exams():
+def index():
     user = auth_service.get_current_user()
+    if request.method == "POST":
+        # request.
+        return
+    
     # status: 1=cursando, 2=aprobado, 3=promocionado
-    StudentSubject.query.filter_by(student_id=user.id).where(status=2)
+    subj_aprobado = StudentSubject.query.filter_by(student_id=user.id).where(status=2).all()
+    subject_id = []
+    for subj in subj_aprobado:
+        if subj.subject_id not in subject_id:
+            subject_id.append(subj.subject_id)
+    
+    exams = []
+    for subj_id in subject_id:
+        for exam in FinalExam.query.filter_by(subject_id=subj_id).all():
+            exams.append({
+                "id":exam.id,
+                "subject_id":exam.subject_id,
+                "date":exam.date,
+                "start_time":exam.start_time,
+                "end_time":exam.end_time
+            })
+    
+    return render_template("student/exam_registration.html", exams=exams)
+    
+    
+    
 
 
 # @bp.route('/')

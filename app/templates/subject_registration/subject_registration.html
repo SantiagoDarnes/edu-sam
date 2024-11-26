@@ -18,7 +18,7 @@
     {% for subject in subjects %}
     <!-- Aca tiene que haber algo que lo haga ver como una grilla -->
         <div>
-            <h3>{{ subject.name }}</h3>
+            <h3>Materia: {{ subject.name }}, ID: {{subject.id}}</h3>
             <p>Periodo academico: {{ subject.academic_period_id }}</p>
             <p>Nota para aprobar: {{ subject.min_passing_grade }}</p>
             <p>Nota para promocionar {{ subject.min_promotion_grade }}</p>
