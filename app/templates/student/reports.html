@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Reportes - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Reportes</h2>
+{% endblock %}
+
+
+{% block content %}
+    <h3>Tus Materias</h3>
+    <table class="subjects-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Estatus</th>
+                <th>Nota</th>
+                <th>Inscripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subj in subjects %}
+            <tr>
+                <td>{{ subj.subject_name }}</td>
+                <td>{{ subj.status }}</td>
+                <td>{{ subj.grade }}</td>
+                <td>{{ subj.enrollment_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

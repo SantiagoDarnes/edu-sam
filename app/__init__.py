@@ -24,5 +24,8 @@ def create_app(config_class=Config):
     
     from app.modules.exam_registration import bp as exam_registration_bp
     app.register_blueprint(exam_registration_bp, url_prefix='/exam_registration')
+    
+    from app.modules.reports import bp as reports_bp
+    app.register_blueprint(reports_bp, url_prefix='/reports')
 
     return app
