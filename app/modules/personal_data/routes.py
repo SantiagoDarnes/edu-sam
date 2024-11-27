@@ -12,8 +12,6 @@ auth_service = AuthService()
 @require_profile("ESTUDIANTE")
 def index():
     user = auth_service.get_current_user()
-    print(user)
-    print(user.__dict__)
     student = Student.query.filter_by(person_id=user.id).first()
     
     
