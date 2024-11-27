@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, session
+from flask import render_template, redirect, url_for, request
 from app.modules.subject_registration import bp
 from app.auth import AuthService, login_required, require_profile
 from app.models.student.student_career import StudentCareer
@@ -27,22 +27,31 @@ def index():
     
     return render_template("student/subject_registration.html", subjects=subjects)
 
-@bp.route('/register/<int:subject_id>', methods=['POST'])
+@bp.route('/register', methods=['POST'])
 @require_profile("ESTUDIANTE")
-def register(subject_id):
+def register():
     user = auth_service.get_current_user()
     student = Student.query.filter_by(person_id=user.id).first()
-    student_subject = StudentSubject(student_id=student.id, subject_id=subject_id)
+    subject_id = request.form.get('subject_id')  # Obtener subject_id del formulario
+
+    # Crear la relación estudiante-materia
+    student_subject = StudentSubject(student_id=student.id, subject_id=subject_id, enrollment_date=db.func.current_date(), status=1)
     db.session.add(student_subject)
     db.session.commit()
+
     return redirect(url_for('subject_registration.index'))
 
-@bp.route('/unregister/<int:subject_id>', methods=['POST'])
+
+@bp.route('/unregister', methods=['POST'])
 @require_profile("ESTUDIANTE")
-def unregister(subject_id):
+def unregister():
     user = auth_service.get_current_user()
     student = Student.query.filter_by(person_id=user.id).first()
+    subject_id = request.form.get('subject_id')  # Obtener subject_id del formulario
+
+    # Buscar la relación estudiante-materia y eliminarla
     student_subject = StudentSubject.query.filter_by(student_id=student.id, subject_id=subject_id).first()
     db.session.delete(student_subject)
     db.session.commit()
+
     return redirect(url_for('subject_registration.index'))

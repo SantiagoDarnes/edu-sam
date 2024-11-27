@@ -2,12 +2,10 @@
 
 {% block title %}Inscripción a Materias - EduSam{% endblock %}
 
-{% block sidebar %}
+{% block top_bar %}
+    <h2>Inscripción a Materias</h2>
 {% endblock %}
 
-{% block top_bar %}
-    <h2>Inscripción a materias</h2> 
-{% endblock %}
 
 {% block content %}
     <h3>Materias disponibles</h3>
@@ -27,12 +25,11 @@
                 <td>{{ subject.min_passing_grade }}</td>
                 <td>{{ subject.min_promotion_grade }}</td>
                 <td>
-                    <form action="{{url_for(subject_registration.register)}}" method="POST">
-                        <input type="hidden" name="subject_id" value="{{subject.id}}">
+                    <form action="{{ url_for('subject_registration.register') }}" method="POST">
+                        <input type="hidden" name="subject_id" value="{{ subject.id }}">
                         <button type="submit" class="enroll-button">
                             Inscribirse
                         </button>
-
                     </form>
                 </td>
             </tr>
