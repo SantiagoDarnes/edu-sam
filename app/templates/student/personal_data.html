@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Datos Personales - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Datos Personales</h2> 
+{% endblock %}
+
+
+{% block content %}
+    <h3>Datos de Usuario</h3>
+    <ul>
+        <li>Nombre de Usuario: {{person.username}}</li>
+        <li>Contraseña: **********</li>
+        <li>Nombres: {{person.first_name}}</li>
+        <li>Apellido: {{person.last_name}}</li>
+        <li>Email: {{person.email}}</li>
+        <li>teléfono: {{person.phone}}</li>
+        <li>Fecha de nacimiento: {{person.birth_date}}</li>
+        <li>Fecha de creacion: {{person.created_at}}</li>
+        <li>Última actualización: {{person.updated_at}}</li>
+    </ul>
+
+    <h3>Datos de Estudiante</h3>
+    <ul>
+        <li>Fecha de inscripción: {{student.enrollment_number}}</li>
+        <li>Fecha de admision: {{student.admission_date}}</li>
+    </ul>
+{% endblock %}

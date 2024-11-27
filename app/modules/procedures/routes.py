@@ -1,5 +1,5 @@
 from flask import render_template, redirect, url_for, request
-from app.modules.reports import bp
+from app.modules.procedures import bp
 from app.auth import AuthService, login_required, require_profile
 
 auth_service = AuthService()

@@ -27,5 +27,11 @@ def create_app(config_class=Config):
     
     from app.modules.reports import bp as reports_bp
     app.register_blueprint(reports_bp, url_prefix='/reports')
+    
+    from app.modules.procedures import bp as procedures_bp
+    app.register_blueprint(procedures_bp, url_prefix='/procedures')
+    
+    from app.modules.personal_data import bp as personal_data_bp
+    app.register_blueprint(personal_data_bp, url_prefix='/personal_data')
 
     return app

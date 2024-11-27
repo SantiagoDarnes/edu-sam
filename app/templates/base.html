@@ -51,8 +51,8 @@
                         <li><a href="{{url_for('exam_registration.index')}}">Inscripción a Exámenes</a></li>
                         <li><a href="{{url_for('reports.index')}}">Reportes</a></li>
                         <li><a href="#">Encuestas</a></li>
-                        <li><a href="#">Trámites</a></li>
-                        <li><a href="#">Mis datos personales</a></li>
+                        <li><a href="{{url_for('procedures.index')}}">Trámites</a></li>
+                        <li><a href="{{url_for('personal_data.index')}}">Mis datos personales</a></li>
                         {% block sidebar %}{% endblock %}
                     </ul>
                 </div>
