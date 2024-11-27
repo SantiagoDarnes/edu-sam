@@ -43,10 +43,10 @@ def index():
 def register():
     user = auth_service.get_current_user()
     student = Student.query.filter_by(person_id=user.id).first()
-    subject_id = request.form.get('exam_id')  # Obtener exam_id del formulario
+    exam_id = request.form.get('exam_id')  # Obtener exam_id del formulario
 
     # Crear la relación estudiante-materia
-    student_exam = StudentFinalExam.register(student_id=student.id, final_exam_id=subject_id)
+    student_exam = StudentFinalExam(student_id=student.id, final_exam_id=exam_id)
     db.session.add(student_exam)
     db.session.commit()
 
