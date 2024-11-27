@@ -14,16 +14,29 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Materias disponibles</h3>
-    {% for exam in exams %}
-    <!-- Aca tiene que haber algo que lo haga ver como una grilla -->
-    <div class="login-right">
-        <form method="POST">
-            <div class="form-group">
-                <label for="exam1">{{exam.subject_id}}</label>
-                <input type="checkbox", placeholder="Inscribirse">
-            </div>
-        </form>
-    </div>
-    {% endfor %}
+    <h3>Exámenes disponibles</h3>
+    <table class="subjects-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Nota para Aprobar</th>
+                <th>Nota para Promocionar</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in exams %}
+            <tr>
+                <td>{{ exam.name }}</td>
+                <td>{{ exam.min_passing_grade }}</td>
+                <td>{{ exam.min_promotion_grade }}</td>
+                <td>
+                    <button action = "#" method="POST" class="enroll-button" data-subject-id="{{ subject.id }}">
+                        Inscribirse
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

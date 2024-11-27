@@ -27,7 +27,7 @@ def index():
     
     return render_template("student/subject_registration.html", subjects=subjects)
 
-@bp.route('/register', methods=['POST'])
+@bp.route('/register/<int:subject_id>', methods=['POST'])
 @require_profile("ESTUDIANTE")
 def register(subject_id):
     user = auth_service.get_current_user()
