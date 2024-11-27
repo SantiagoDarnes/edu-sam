@@ -19,21 +19,19 @@
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Nota para Aprobar</th>
-                <th>Nota para Promocionar</th>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
                 <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             {% for exam in exams %}
             <tr>
-                <td>{{ exam.id }}</td>
-                <td>{{ exam.subject_id }}</td>
+                <td>{{ exam.subject_name }}</td>
                 <td>{{ exam.date }}</td>
                 <td>{{ exam.start_time }}</td>
-                <td>{{ exam.end_time }}</td>
                 <td>
-                    <form action="{{ url_for('subject_registration.register') }}" method="POST">
+                    <form action="{{ url_for('exam_registration.register') }}" method="POST">
                         <input type="hidden" name="exam_id" value="{{ exam.id }}">
                         <button type="submit" class="enroll-button">
                             Inscribirse

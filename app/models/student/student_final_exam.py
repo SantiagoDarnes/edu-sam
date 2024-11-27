@@ -18,3 +18,14 @@ class StudentFinalExam(db.Model):
 
     def __repr__(self):
         return f'<StudentFinalExam Student: {self.student_id}, FinalExam: {self.final_exam_id}>'
+    
+    @staticmethod
+    def register(student_id: int, final_exam_id: int, grade: float=0.0):
+        student_exam = StudentFinalExam(
+            student_id=student_id,
+            final_exam_id=final_exam_id,
+            grade=grade
+        )
+        db.session.add(student_exam)
+        db.session.commit()
+        return student_exam

@@ -8,7 +8,6 @@ from app.models.student.student import Student
 from app.models.academic_period import AcademicPeriod
 from app.models.semester import Semester
 from app import db
-# No tengo idea de como usar AcademicPeriod
 
 auth_service = AuthService()
 
