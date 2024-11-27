@@ -28,4 +28,5 @@ class StudentFinalExam(db.Model):
         )
         db.session.add(student_exam)
         db.session.commit()
-        return student_exam
+        
+    
