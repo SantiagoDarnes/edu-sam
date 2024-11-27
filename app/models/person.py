@@ -24,7 +24,7 @@ class Person(db.Model):
     students = db.relationship('Student', backref='person', lazy=True)
     professors = db.relationship('Professor', backref='person', lazy=True)
     administrators = db.relationship('Administrator', backref='person', lazy=True)
-    profiles = db.relationship('Profile', secondary='person_profile', backref='people')
+    profiles = db.relationship('Profile', secondary='person_profile', backref='people', viewonly=True)
 
 
     def set_password(self, password):

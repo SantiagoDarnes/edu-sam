@@ -3,6 +3,7 @@ from flask import redirect, url_for, session
 from werkzeug.security import check_password_hash
 from app.models.person import Person
 from app.models.profile import Profile
+from app import db
 
 
 class AuthService:
@@ -14,11 +15,12 @@ class AuthService:
         return cls._instance
 
     def authenticate(self, username, password):
-        user = Person.query.filter_by(username=username).first()
+        user = db.session.query(Person).filter_by(username=username).first()
+        # user = Person.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             session['username'] = user.username
             session['user_id'] = user.id
-            session['profile'] = Profile.query.get(user.default_profile).name
+            session['profile'] = db.session.query(Profile).filter_by(id=user.default_profile).first().name
             session['profiles'] = [profile.name for profile in user.profiles]
             return True
         return False
@@ -34,7 +36,8 @@ class AuthService:
 
     def get_current_user(self):
         if 'user_id' in session:
-            return Person.query.get(session['user_id'])
+            return db.session.query(Person).filter_by(id=session["user_id"]).first()
+            
         return None
 
 
