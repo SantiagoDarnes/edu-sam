@@ -27,7 +27,6 @@ class Person(db.Model):
     profiles = db.relationship('Profile', secondary='person_profile', backref='people')
 
 
-
     def set_password(self, password):
         """Genera el hash de la contraseña."""
         self.password_hash = generate_password_hash(password)
