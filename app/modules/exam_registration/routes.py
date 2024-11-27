@@ -50,7 +50,7 @@ def register():
     db.session.add(student_exam)
     db.session.commit()
 
-    return redirect(url_for('subject_registration.index'))
+    return redirect(url_for('exam_registration.index'))
 
 
 @bp.route('/unregister', methods=['POST'])
@@ -65,4 +65,4 @@ def unregister():
     db.session.delete(student_subject)
     db.session.commit()
 
-    return redirect(url_for('subject_registration.index'))
+    return redirect(url_for('exam_registration.index'))
