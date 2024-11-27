@@ -34,4 +34,7 @@ def create_app(config_class=Config):
     from app.modules.personal_data import bp as personal_data_bp
     app.register_blueprint(personal_data_bp, url_prefix='/personal_data')
 
+    from app.modules.settings import bp as settings_bp
+    app.register_blueprint(settings_bp, url_prefix='/settings')
+
     return app
