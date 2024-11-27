@@ -27,13 +27,18 @@
         <tbody>
             {% for exam in exams %}
             <tr>
-                <td>{{ exam.name }}</td>
-                <td>{{ exam.min_passing_grade }}</td>
-                <td>{{ exam.min_promotion_grade }}</td>
+                <td>{{ exam.id }}</td>
+                <td>{{ exam.subject_id }}</td>
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.start_time }}</td>
+                <td>{{ exam.end_time }}</td>
                 <td>
-                    <button action = "#" method="POST" class="enroll-button" data-subject-id="{{ subject.id }}">
-                        Inscribirse
-                    </button>
+                    <form action="{{ url_for('subject_registration.register') }}" method="POST">
+                        <input type="hidden" name="exam_id" value="{{ exam.id }}">
+                        <button type="submit" class="enroll-button">
+                            Inscribirse
+                        </button>
+                    </form>
                 </td>
             </tr>
             {% endfor %}

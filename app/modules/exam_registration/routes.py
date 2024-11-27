@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, session, request
 from app.models.student.student import Student
+from app.models.subject import Subject
 from app.modules.exam_registration import bp
 from app.auth import AuthService, login_required, require_profile
 from app.models.final_exam import FinalExam
@@ -18,7 +19,9 @@ def index():
     subjects = StudentSubject.query.filter_by(student_id=student.id, status=2).all()
     exams = []
     for subj in subjects:
-        for exam in FinalExam.query.filter_by(subject_id=subj.id).all():
+        # 
+        for exam in FinalExam.query.filter_by(subject_id=subj.subject_id).join(Subject, FinalExam.subject_id==Subject.id).all():
+            print(exam.__dict__)
             exams.append({
                 "id":exam.id,
                 "subject_id":exam.subject_id,
