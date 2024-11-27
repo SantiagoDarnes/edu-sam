@@ -24,7 +24,13 @@ def index():
     for student_career in student_careers:
         subjects += Subject.query.filter_by(career_id=student_career.career_id, academic_period_id=academic_period.id).all()
     
-    return render_template("student/subject_registration.html", subjects=subjects)
+    registered_subjects = StudentSubject.query.filter_by(student_id=student.id).all()
+    registered_subject_ids = [ss.subject_id for ss in registered_subjects]
+
+    available_subjects = [subject for subject in subjects if subject.id not in registered_subject_ids]
+    registered_subjects = [subject for subject in subjects if subject.id in registered_subject_ids]
+
+    return render_template("student/subject_registration.html", available_subjects=available_subjects, registered_subjects=registered_subjects)
 
 @bp.route('/register', methods=['POST'])
 @require_profile("ESTUDIANTE")
