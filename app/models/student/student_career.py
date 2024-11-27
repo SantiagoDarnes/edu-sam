@@ -1,4 +1,5 @@
 from app.extensions import db
+from app.models.career import Career
 
 
 class StudentCareer(db.Model):
@@ -10,4 +11,4 @@ class StudentCareer(db.Model):
     enrollment_date = db.Column(db.Date, nullable=False)
 
     def __repr__(self):
-        return f'<StudentCareer Student: {self.student_id}, Career: {self.career_id}>'
+        return db.session.query(Career).filter_by(id=self.career_id).first().name

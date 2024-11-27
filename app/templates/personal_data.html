@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Datos Personales - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Datos Personales</h2> 
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <!-- Datos del usuario -->
+    <div class="profile-card">
+        <h3>Datos de Usuario</h3>
+        <ul class="profile-list">
+            <li><strong>Usuario:</strong> {{person.username.lower()}}</li>
+            <li><strong>Nombres:</strong> {{person.first_name.title()}}</li>
+            <li><strong>Apellidos:</strong> {{person.last_name.title()}}</li>
+            <li><strong>Correo:</strong> {{person.email}}</li>
+            <li><strong>Teléfono:</strong> {{person.phone}}</li>
+            <li><strong>Fecha de nacimiento:</strong> {{ person.birth_date.strftime('%d/%m/%Y') }}</li>
+        </ul>
+    </div>
+
+    <!-- Si el usuario es un estudiante -->
+    {% if student %}
+    <div class="profile-card">
+        <h3>Datos de Estudiante</h3>
+        <ul class="profile-list">
+            <li><strong>Matrícula:</strong> {{student.enrollment_number}}</li>
+            <li><strong>Fecha de admisión:</strong> {{student.admission_date.strftime('%d/%m/%Y')}}</li>
+            <li><strong>Carreras:</strong> {{student.careers}}</li>
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Si el usuario es un profesor -->
+    {% if professor %}
+    <div class="profile-card">
+        <h3>Datos de Profesor</h3>
+        <ul class="profile-list">
+            <li><strong>Matrícula:</strong> {{ professor.professor_code }}</li>
+            <li><strong>Departamentos:</strong> {{professor.departments}}</li>
+            <li><strong>Carreras:</strong> {{ professor.careers }}</li>
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Si el usuario es un administrador -->
+    {% if admin %}
+    <div class="profile-card">
+        <h3>Datos de Administrador</h3>
+        <ul class="profile-list">
+            <li><strong>Nivel de acceso:</strong> {{ admin.access_level }}</li>
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

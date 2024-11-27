@@ -9,6 +9,7 @@ class Professor(db.Model):
     person_id = db.Column(db.Integer, db.ForeignKey('person.id'), nullable=False)
     professor_code = db.Column(db.String(50), unique=True, nullable=False)
 
+    departments = db.relationship('ProfessorDepartment', backref='professor')
     careers = db.relationship('ProfessorCareer', backref='professor')
     subjects = db.relationship('ProfessorSubject', backref='professor')
 
