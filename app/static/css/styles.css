@@ -254,3 +254,19 @@ main {
 .enroll-button:hover {
     background-color: #005f99; /* Color más oscuro al pasar el mouse */
 }
+
+/* Estilo para el botón de desincribirse*/
+.unenroll-button {
+    padding: 8px 12px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.unenroll-button:hover {
+    background-color: #cc0000; /* Color más oscuro al pasar el mouse */
+}
