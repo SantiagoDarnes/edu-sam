@@ -30,7 +30,7 @@
                 <div class="profile-menu-container">
                     <a href="#" class="icon" id="profile-icon"><i class="fas fa-user-circle"></i></a>
                     <div class="profile-menu" id="profile-menu">
-                        <a href="#" class="menu-item">
+                        <a href="{{ url_for('settings.index') }}" class="menu-item">
                             <i class="fas fa-cog"></i> Configuración
                         </a>
                         <a href="{{ url_for('login.logout') }}" class="menu-item">
