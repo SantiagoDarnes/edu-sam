@@ -15,16 +15,18 @@ auth_service = AuthService()
 def index():
     user = auth_service.get_current_user()
     student = Student.query.filter_by(person_id=user.id).first()
-    subjects_student = StudentSubject.query.filter_by(student_id=student.id, status=2).all()
+    subjects_student = StudentSubject.query.filter_by(student_id=student.id).all()
     subjects = []
     for subj in subjects_student:
         subject = Subject.query.filter_by(id=subj.subject_id).first()
         status = SubjectStatus.query.filter_by(id=subj.status).first()
         subjects.append({
-            "enrollment_date":subj.enrollment_date,
-            "grade":subj.grade,
-            "status":status.name,
-            "subject_name":subject.name
+            "enrollment_date": subj.enrollment_date.strftime("%d/%m/%Y"),
+            "grade": subj.grade if subj.grade is not None else "-",
+            "status": status.name,
+            "subject_name": subject.name
         })
+
+    print(subjects)
     
     return render_template("student/reports.html", subjects=subjects)
