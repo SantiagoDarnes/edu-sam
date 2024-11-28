@@ -9,3 +9,7 @@ class Profile(db.Model):
 
     def __repr__(self):
         return self.name
+    
+    @staticmethod
+    def get_default_profile(user_id):
+        return Profile.query.filter_by(name='default').first()

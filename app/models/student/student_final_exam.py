@@ -18,3 +18,4 @@ class StudentFinalExam(db.Model):
 
     def __repr__(self):
         return f'<StudentFinalExam Student: {self.student_id}, FinalExam: {self.final_exam_id}>'
+    

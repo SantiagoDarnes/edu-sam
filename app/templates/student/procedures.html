@@ -1,0 +1,27 @@
+{% extends 'student/base.html' %}
+
+{% block title %}Trámites - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Trámites</h2>
+{% endblock %}
+
+
+{% block content %}
+    <h3>Tus Trámites</h3>
+    <p>Constancias</p>
+    <form action="{{ url_for('procedures.regular_student') }}" method="POST">
+        <input type="hidden">
+        <button type="submit" class="enroll-button">
+            Solicitar
+        </button>
+    </form>
+    
+    <p>Boleto Estudiantil</p>
+    <form action="{{ url_for('procedures.student_ticket') }}" method="POST">
+        <input type="hidden">
+        <button type="submit" class="enroll-button">
+            Solicitar
+        </button>
+    </form>
+{% endblock %}

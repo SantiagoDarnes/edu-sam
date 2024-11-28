@@ -24,23 +24,30 @@ class Person(db.Model):
     students = db.relationship('Student', backref='person', lazy=True)
     professors = db.relationship('Professor', backref='person', lazy=True)
     administrators = db.relationship('Administrator', backref='person', lazy=True)
-    profiles = db.relationship('Profile', secondary='person_profile', backref='people')
-
+    profiles = db.relationship('Profile', secondary='person_profile', backref='people', viewonly=True)
 
 
     def set_password(self, password):
         """Genera el hash de la contraseña."""
-        self.password_hash = generate_password_hash(password)
+        self.password = generate_password_hash(password)
 
     def check_password(self, password):
         """Verifica si la contraseña es correcta."""
-        return check_password_hash(self.password_hash, password)
+        return check_password_hash(self.password, password)
     
     def set_username(self):
         self.username = self.first_name[0].upper() + self.last_name.split()[0].upper()
 
     def generate_password(self):
         self.password = generate_password_hash(self.identity_number)
+
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def update(self):
+        db.session.commit()
 
     def __repr__(self):
         return f'<Person {self.username}, ID: {self.identity_number}>'

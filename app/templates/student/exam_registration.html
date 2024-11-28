@@ -1,0 +1,68 @@
+{% extends 'student/base.html' %}
+
+{% block title %}Inscripción a exámenes - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Inscripción a exámenes</h2> 
+{% endblock %}
+
+
+{% block content %}
+    <h3>Exámenes disponibles</h3>
+    <table class="subjects-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in available_exams %}
+            <tr>
+                <td>{{ exam.subject_name }}</td>
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.start_time }}</td>
+                <td>
+                    <form action="{{ url_for('exam_registration.register') }}" method="POST">
+                        <input type="hidden" name="exam_id" value="{{ exam.id }}">
+                        <button type="submit" class="enroll-button">
+                            Inscribirse
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Exámenes inscriptos</h3>
+    <table class="subjects-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Hora de Inicio</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for exam in registered_exams %}
+            <tr>
+                <td>{{ exam.subject_name }}</td>
+                <td>{{ exam.date }}</td>
+                <td>{{ exam.start_time }}</td>
+                <td>
+                    <form action="{{ url_for('exam_registration.unregister') }}" method="POST">
+                        <input type="hidden" name="exam_id" value="{{ exam.id }}">
+                        <button type="submit" class="unenroll-button">
+                            Desinscribirse
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
