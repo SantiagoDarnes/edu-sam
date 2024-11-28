@@ -53,6 +53,62 @@ header, footer {
     color: #ededed;
 }
 
+/* Contenedor del dropdown */
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px; /* Espacio entre "EduSam" y el desplegable */
+}
+
+/* Botón del dropdown */
+.profile-dropdown .dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ededed;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Ícono del dropdown */
+.profile-dropdown .dropdown-toggle i {
+    font-size: 12px;
+}
+
+/* Menú desplegable */
+.profile-dropdown .dropdown-menu {
+    display: none; /* Por defecto, está cerrado */
+    position: absolute;
+    top: 100%;
+    left: 0; /* Alineado al lado izquierdo del contenedor */
+    min-width: 150px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile-dropdown .dropdown-menu li {
+    list-style: none;
+}
+
+.profile-dropdown .dropdown-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #555;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-dropdown .dropdown-menu li a:hover {
+    background-color: #f0f0f0;
+}
+
 /* Contenedor del menú desplegable */
 .profile-menu-container {
     position: relative;
@@ -212,6 +268,159 @@ main {
 .sidebar-menu a:hover {
     background-color: #f0f0f0; /* Fondo gris claro al pasar el mouse */
 }
+
+
+
+
+
+/* Contenedor general de la página */
+.student-home-container {
+    padding: 1px;
+}
+
+/* Títulos */
+.student-home-container h3 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #007acc;
+}
+
+.student-home-container h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Detalles del período académico */
+.period-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.period-details li {
+    margin-bottom: 8px;
+}
+
+.period-details li strong {
+    color: #333;
+}
+
+/* Acciones disponibles */
+.academic-period-actions {
+    margin-top: 20px;
+}
+
+.actions-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.action-card {
+    flex: 1 1 calc(50% - 10px);
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    background-color: #007acc;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-card i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.action-card:hover {
+    background-color: #005f99;
+    transform: translateY(-3px);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .actions-grid {
+        flex-direction: column;
+    }
+
+    .action-card {
+        flex: 1 1 100%;
+    }
+}
+
+.qr-modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.qr-modal-content {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 150px;
+    max-height: 250px; 
+    overflow: hidden; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.qr-modal img {
+    width: 100%; 
+    height: auto; 
+    max-height: 100%; 
+    margin: 0 auto; 
+}
+
+.btn-schedule {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007acc; /* Color base */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease; /* Transición suave */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.btn-schedule:hover {
+    background-color: #005f99; /* Color más oscuro al pasar el mouse */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.btn-schedule:active {
+    background-color: #004e80; /* Color más oscuro al hacer clic */
+    transform: translateY(0); /* Sin elevación */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); /* Sombra más ligera */
+}
+
+
+
+
+
+
 
 
 
@@ -415,4 +624,102 @@ main {
 
 .settings-card form button:hover {
     background-color: #005f99;
+}
+
+
+
+
+
+
+
+/* Contenedor general */
+.register-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Títulos del formulario */
+.register-form h3 {
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: #007acc;
+    text-align: center;
+}
+
+/* Contenedor de columnas */
+.form-columns {
+    display: flex;
+    gap: 30px; /* Aumentamos el espacio entre columnas */
+    justify-content: space-between;
+}
+
+/* Columnas individuales */
+.form-column {
+    flex: 1; /* Igual tamaño para ambas columnas */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre los campos dentro de cada columna */
+    padding: 10px; /* Espaciado interno para evitar que los inputs toquen */
+}
+
+
+/* Estilo de los campos */
+.register-form .form-group {
+    margin-bottom: 0;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.register-form input,
+.register-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.register-form input:focus,
+.register-form select:focus {
+    border-color: #007acc;
+    outline: none;
+}
+
+/* Botón de enviar */
+.btn-submit {
+    padding: 12px 20px;
+    background-color: #007acc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-end; /* Alinea el botón a la derecha */
+}
+
+.btn-submit:hover {
+    background-color: #005f99;
+    transform: translateY(-2px);
+}
+
+.btn-submit:active {
+    background-color: #004e80;
+    transform: translateY(0);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .form-columns {
+        flex-direction: column;
+    }
 }

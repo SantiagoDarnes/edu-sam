@@ -1,0 +1,27 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Inicio - EduSam{% endblock %}
+
+{% block navbar_content %}
+<div class="profile-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        Perfil {{ default_profile.name }}
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul class="dropdown-menu" id="dropdown-menu">
+        {% for profile in profiles %}
+        <li>
+            <a href="{{ url_for('home.switch_profile', profile_id=profile.id) }}">
+                {{ profile.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+
+{% block top_bar %}
+    <h2>Bienvenido, {{ username }}</h2> 
+{% endblock %}
+

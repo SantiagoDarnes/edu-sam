@@ -1,0 +1,64 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Registrar Persona - EduSam{% endblock %}
+
+{% block top_bar %}
+    <h2>Registrar Persona</h2>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+    <form action="{{ url_for('person_registration.index') }}" method="POST" class="register-form">
+        <h3>Datos de la Persona</h3>
+        <div class="form-columns">
+            <!-- Columna Izquierda -->
+            <div class="form-column">
+                <div class="form-group">
+                    <label for="identity_number">Número de Documento</label>
+                    <input type="text" id="identity_number" name="identity_number" placeholder="Ej. 12345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="first_name">Nombre</label>
+                    <input type="text" id="first_name" name="first_name" placeholder="Ej. Juan" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Apellido</label>
+                    <input type="text" id="last_name" name="last_name" placeholder="Ej. Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" placeholder="Ej. juan.perez@correo.com" required>
+                </div>
+            </div>
+
+            <!-- Columna Derecha -->
+            <div class="form-column">
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Ej. +54 11 1234-5678" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birth_date">Fecha de Nacimiento</label>
+                    <input type="date" id="birth_date" name="birth_date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="user_type">Tipo de Usuario</label>
+                    <select id="user_type" name="user_type" required>
+                        <option value="" disabled selected>Seleccione un tipo de usuario</option>
+                        <option value="ESTUDIANTE">Estudiante</option>
+                        <option value="PROFESOR">Profesor</option>
+                        <option value="ADMINISTRADOR">Administrador</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-submit">Registrar Persona</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

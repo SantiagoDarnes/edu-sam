@@ -16,5 +16,9 @@ def index():
     professor = Professor.query.filter_by(person_id=user.id).first()
     admin = Administrator.query.filter_by(person_id=user.id).first()
     
-    
-    return render_template("personal_data.html", person=user, student=student, professor=professor, admin=admin)
+    if user.default_profile == 1:
+        return render_template("student/personal_data.html", person=user, student=student, professor=professor, admin=admin)
+    elif user.default_profile == 2:
+        return render_template("professor/personal_data.html", person=user, student=student, professor=professor, admin=admin)
+    else:
+        return render_template("admin/personal_data.html", person=user, student=student, professor=professor, admin=admin)

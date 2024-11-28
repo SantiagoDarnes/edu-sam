@@ -1,8 +1,23 @@
-{% extends 'base.html' %}
+{% extends 'student/base.html' %}
 
 {% block title %}Inicio - EduSam{% endblock %}
 
-{% block sidebar %}
+{% block navbar_content %}
+<div class="profile-dropdown">
+    <button class="dropdown-toggle" onclick="toggleDropdown()">
+        Perfil {{ default_profile.name }}
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <ul class="dropdown-menu" id="dropdown-menu">
+        {% for profile in profiles %}
+        <li>
+            <a href="{{ url_for('home.switch_profile', profile_id=profile.id) }}">
+                {{ profile.name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
 
 
@@ -11,6 +26,30 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Bienvenido a la página principal</h3>
-    <p>Esta es la página principal del Gestor Académico.</p>
+<div class="student-home-container">
+    <h3>Período Académico Actual</h3>
+    
+    <div class="academic-period-card">
+        <h4>Información General</h4>
+        <ul class="period-details">
+            <li><strong>Inicio del Período:</strong> {{ academic_period.start_date }}</li>
+            <li><strong>Fin del Período:</strong> {{ academic_period.end_date }}</li>
+            <li><strong>Inicio de Inscripciones:</strong> {{ academic_period.inscription_start_date }}</li>
+            <li><strong>Fin de Inscripciones:</strong> {{ academic_period.inscription_end_date }}</li>
+        </ul>
+    </div>
+
+    <div class="academic-period-actions">
+        <div class="academic-period-actions">
+            <button class="btn-schedule" onclick="showQrCode()">Agendar</button>
+            <div id="qr-modal" class="qr-modal">
+                <div class="qr-modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h5>Escanea el QR para agendar el período</h5>
+                    <img id="qr-code" src="{{ url_for('home.academic_period_qr') }}" alt="QR Code para agendar">
+                </div>
+            </div>
+        </div>        
+    </div>
+</div>
 {% endblock %}

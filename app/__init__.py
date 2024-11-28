@@ -1,5 +1,5 @@
 from flask import Flask
-from app.extensions import db
+from app.extensions import db, mail
 from config import Config
 
 def create_app(config_class=Config):
@@ -8,6 +8,7 @@ def create_app(config_class=Config):
 
     # Initialize Flask extensions here
     db.init_app(app)
+    mail.init_app(app)
 
     # Register blueprints here
     from app.main import bp as main_bp
@@ -36,5 +37,8 @@ def create_app(config_class=Config):
 
     from app.modules.settings import bp as settings_bp
     app.register_blueprint(settings_bp, url_prefix='/settings')
+
+    from app.modules.person_registration import bp as person_registration_bp
+    app.register_blueprint(person_registration_bp, url_prefix='/person_registration')
 
     return app
