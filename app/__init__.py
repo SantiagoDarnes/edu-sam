@@ -41,4 +41,7 @@ def create_app(config_class=Config):
     from app.modules.person_registration import bp as person_registration_bp
     app.register_blueprint(person_registration_bp, url_prefix='/person_registration')
 
+    from app.modules.add_subject import bp as add_subject_bp
+    app.register_blueprint(add_subject_bp, url_prefix='/add_subject')
+
     return app
