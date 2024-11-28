@@ -25,3 +25,7 @@ class AcademicPeriod(db.Model):
     def validate_dates(start_date, end_date):
         if start_date >= end_date:
             raise ValueError("The start_date must be earlier than the end_date.")
+        
+    @staticmethod
+    def get_current():
+        return AcademicPeriod.query.filter_by(is_active=True).first()

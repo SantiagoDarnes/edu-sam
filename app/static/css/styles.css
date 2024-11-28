@@ -217,6 +217,101 @@ main {
 
 
 
+/* Contenedor general de la página */
+.student-home-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+.student-home-container h3 {
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    color: #007acc;
+}
+
+.student-home-container h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+/* Detalles del período académico */
+.period-details {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.period-details li {
+    margin-bottom: 8px;
+}
+
+.period-details li strong {
+    color: #333;
+}
+
+/* Acciones disponibles */
+.academic-period-actions {
+    margin-top: 20px;
+}
+
+.actions-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.action-card {
+    flex: 1 1 calc(50% - 10px);
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    background-color: #007acc;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.action-card i {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.action-card:hover {
+    background-color: #005f99;
+    transform: translateY(-3px);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .actions-grid {
+        flex-direction: column;
+    }
+
+    .action-card {
+        flex: 1 1 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 /* Estilo para la tabla de materias */
 .subjects-table {
     width: 100%; /* Ocupa todo el ancho disponible */
