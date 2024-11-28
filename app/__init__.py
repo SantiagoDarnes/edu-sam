@@ -38,4 +38,7 @@ def create_app(config_class=Config):
     from app.modules.settings import bp as settings_bp
     app.register_blueprint(settings_bp, url_prefix='/settings')
 
+    from app.modules.person_registration import bp as person_registration_bp
+    app.register_blueprint(person_registration_bp, url_prefix='/person_registration')
+
     return app

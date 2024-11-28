@@ -14,7 +14,13 @@ def index():
     emial = user.email
     default_profile = Profile.get_default_profile(user.id)
     profiles = user.profiles
-    return render_template("settings.html", emial=emial, default_profile=default_profile, profiles=profiles)
+
+    if user.default_profile == 1:
+        return render_template("student/settings.html", emial=emial, default_profile=default_profile, profiles=profiles)
+    elif user.default_profile == 2:
+        return render_template("professor/settings.html", emial=emial, default_profile=default_profile, profiles=profiles)
+    else:
+        return render_template("admin/settings.html", emial=emial, default_profile=default_profile, profiles=profiles)
 
 
 @bp.route('/change_email', methods=['POST'])

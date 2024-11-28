@@ -39,7 +39,17 @@ def academic_period_qr():
 @bp.route('/professor')
 @login_required
 @require_profile('PROFESOR')
-def home_teacher():
+def home_professor():
     user = auth_service.get_current_user()
     username = user.first_name.title() + ' ' + user.last_name.title()
     return render_template('professor/home.html', username=username)
+
+
+@bp.route('/admin')
+@login_required
+@require_profile('ADMINISTRADOR')
+def home_admin():
+    user = auth_service.get_current_user()
+    username = user.first_name.title() + ' ' + user.last_name.title()
+    return render_template('admin/home.html', username=username)
+    

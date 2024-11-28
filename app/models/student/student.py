@@ -16,4 +16,11 @@ class Student(db.Model):
     def __repr__(self):
         return f'<Student {self.enrollment_number}>'
     
+    def set_enrollment_number(self):
+        last_student = Student.query.order_by(Student.id.desc()).first()
+        if last_student:
+            self.enrollment_number = str(last_student.id + 1)
+        else:
+            self.enrollment_number = '1'
+    
     
