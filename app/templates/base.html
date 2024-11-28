@@ -24,6 +24,7 @@
                 <a href="{{ url_for('main.index') }}" class="navbar-brand" style="font-family: 'Ubuntu', sans-serif;">EduSam</a>
             </div>
             <div class="navbar-right">
+                {% block navbar_content %}{% endblock %}
                 <a href="#" class="icon" id="notification-icon"><i class="fas fa-bell"></i></a>
                 <a href="#" class="icon" id="message-icon"><i class="fas fa-envelope"></i></a>
                 <span class="user-name">{{ username }}</span>
@@ -67,7 +68,7 @@
     </main>
 
     <footer>
-        <p>Footer</p>
+        <p style="font-size: 0.8em;">&copy; 2024 EduSam. Todos los derechos reservados.</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -122,5 +123,23 @@
             });
         });
     </script>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById("dropdown-menu");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        // Cierra el menú si se hace clic fuera del mismo
+        document.addEventListener("click", function (event) {
+            const dropdown = document.getElementById("dropdown-menu");
+            const toggleButton = document.querySelector(".dropdown-toggle");
+
+            if (!dropdown.contains(event.target) && event.target !== toggleButton) {
+                dropdown.style.display = "none";
+            }
+        });
+    </script>
+
 </body>
 </html>
