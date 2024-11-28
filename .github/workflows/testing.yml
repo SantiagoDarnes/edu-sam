@@ -3,9 +3,9 @@ name: Run Tests
 on:
   push:
     branches:
-    # - main
-    # - dev
-    - githubActions
+    - main
+    - dev
+    - add_inscripcion_a_materias
   pull_request:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Acción para obtener el código del repositorio
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
