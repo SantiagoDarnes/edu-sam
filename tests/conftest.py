@@ -1,6 +1,3 @@
-import tempfile, os, sys
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import pytest
 from app import create_app, db
 from flask import Flask
@@ -25,21 +22,3 @@ def test_client(app: Flask):
 @pytest.fixture()
 def runner(app: Flask):
     return app.test_cli_runner()
-
-
-class AuthActions:
-    def __init__(self, test_client):
-        self._client = test_client
-
-    def login(self, username='test', password='test'):
-        return self._client.post(
-            '/login',
-            data={'username': username, 'password': password}
-        )
-    
-    def logout(self):
-        return self._client.get('/login/logout')
-    
-@pytest.fixture()
-def auth(client):
-    return AuthActions(client)
