@@ -9,4 +9,4 @@ class AccessLevel(db.Model):
     level = db.Column(db.Integer, unique=True, nullable=False)  
 
     def __repr__(self):
-        return f'<AccessLevel Level: {self.level}, Description: {self.description}>'
+        return f'<AccessLevel Level: {self.level}>'
