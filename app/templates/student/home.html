@@ -25,17 +25,16 @@
     </div>
 
     <div class="academic-period-actions">
-        <h4>Acciones Disponibles</h4>
-        <div class="actions-grid">
-            <a href="{{ url_for('subject_registration.index') }}" class="action-card">
-                <i class="fas fa-book"></i>
-                Inscribir Materias
-            </a>
-            <a href="{{ url_for('exam_registration.index') }}" class="action-card">
-                <i class="fas fa-pencil-alt"></i>
-                Inscribir Exámenes
-            </a>
-        </div>
+        <div class="academic-period-actions">
+            <button class="btn-schedule" onclick="showQrCode()">Agendar</button>
+            <div id="qr-modal" class="qr-modal">
+                <div class="qr-modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h5>Escanea el QR para agendar el período</h5>
+                    <img id="qr-code" src="{{ url_for('home.academic_period_qr') }}" alt="QR Code para agendar">
+                </div>
+            </div>
+        </div>        
     </div>
 </div>
 {% endblock %}

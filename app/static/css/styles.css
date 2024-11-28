@@ -219,12 +219,7 @@ main {
 
 /* Contenedor general de la página */
 .student-home-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1px;
 }
 
 /* Títulos */
@@ -302,6 +297,69 @@ main {
         flex: 1 1 100%;
     }
 }
+
+.qr-modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.qr-modal-content {
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 150px;
+    max-height: 250px; 
+    overflow: hidden; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.qr-modal img {
+    width: 100%; 
+    height: auto; 
+    max-height: 100%; 
+    margin: 0 auto; 
+}
+
+.btn-schedule {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #007acc; /* Color base */
+    color: #fff; /* Color del texto */
+    border: none;
+    border-radius: 8px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease; /* Transición suave */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+.btn-schedule:hover {
+    background-color: #005f99; /* Color más oscuro al pasar el mouse */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+.btn-schedule:active {
+    background-color: #004e80; /* Color más oscuro al hacer clic */
+    transform: translateY(0); /* Sin elevación */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); /* Sombra más ligera */
+}
+
 
 
 
