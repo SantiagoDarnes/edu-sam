@@ -4,11 +4,16 @@ from app.extensions import db
 from app.modules.person_registration import bp
 from app.auth import AuthService, login_required, require_profile
 from app.models.person import Person
+from app.models.person_profile import PersonProfile
 from app.models.student.student import Student
 from app.models.professor.professor import Professor
 from app.models.administrator import Administrator
+from app.notifications.manager import NotificationsManager
+from app.notifications.email_notifier import EmailNotifier
 
 auth_service = AuthService()
+notifications_manager = NotificationsManager()
+notifications_manager.register(EmailNotifier())
 
 @bp.route("/", methods=["GET", "POST"])
 @login_required
@@ -52,7 +57,22 @@ def index():
                 db.session.add(new_admin)
                 new_person.default_profile = 3
 
+            person_profile = PersonProfile(person_id=new_person.id, profile_id=new_person.default_profile)
+            db.session.add(person_profile)
             db.session.commit()
+
+            full_name = new_person.first_name + " " + new_person.last_name
+            notifications_manager.notify(
+                event="user_created",
+                data={
+                    "name": full_name.title(),
+                    "username": new_person.username,
+                    "identity_number": new_person.identity_number,
+                    "profile_type": user_type,
+                    "email": new_person.email,
+                },
+            )
+
             flash("Persona registrada exitosamente.", "success")
         except Exception as e:
             db.session.rollback()

@@ -19,7 +19,7 @@ class Student(db.Model):
     def set_enrollment_number(self):
         last_student = Student.query.order_by(Student.id.desc()).first()
         if last_student:
-            self.enrollment_number = str(last_student.enrollment_number + 1)
+            self.enrollment_number = str(int(last_student.enrollment_number) + 1)
         else:
             self.enrollment_number = '1'
     

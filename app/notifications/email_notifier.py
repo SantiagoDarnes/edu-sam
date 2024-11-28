@@ -10,6 +10,7 @@ class EmailNotifier:
         self.event_handlers = {
             "proof_request": self._handle_proof_request,
             "student_ticket_request": self._handle_student_ticket_request,
+            "user_created": self._handle_user_created,
         }
 
     def notify(self, event, data):
@@ -24,7 +25,7 @@ class EmailNotifier:
             logging.warning(f"No handler for event '{event}'.")
 
     def _handle_proof_request(self, data):
-        subject = "Solicitud de certificado de alumno regular"
+        subject = "[EduSam] - Solicitud de certificado de alumno regular"
         body = (
             f"Estimado/a {data['name']},\n\n"
             f"Adjuntamos su certificado de alumno regular.\n\n"
@@ -41,13 +42,33 @@ class EmailNotifier:
         )
 
     def _handle_student_ticket_request(self, data):
-        subject = "Solicitud de boleto estudiantil"
+        subject = "[EduSam] - Solicitud de boleto estudiantil"
         body = (
             f"Estimado/a {data['name']},\n\n"
             f"Recibimos su solicitud de boleto estudiantil.\n\n"
             f"Datos de la solicitud:\n"
             f"Número de Documento: {data['identity_number']}\n\n"
             f"Iniciaremos el trámite y nos pondremos en contacto con usted a la brevedad.\n\n"
+            f"Saludos cordiales."
+        )
+        
+        self._send_email(
+            subject=subject,
+            recipients=[data["email"]],
+            body=body,
+        )
+
+    
+    def _handle_user_created(self, data):
+        pass
+        subject = "[EduSam] - Usuario creado"
+        body = (
+            f"Estimado/a {data['name']},\n\n"
+            f"Su usuario ha sido creado exitosamente en el sistema.\n\n"
+            f"Detalles de su cuenta:\n"
+            f"Usuario: {data['username']}\n"
+            f"Contraseña: {data['identity_number']}\n"
+            f"Perfil: {data['profile_type']}\n\n"
             f"Saludos cordiales."
         )
         
