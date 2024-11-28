@@ -19,7 +19,7 @@ def index():
 
 @bp.route("/register", methods=["POST"])
 @login_required
-@require_profile("ADMINISTRATOR")
+@require_profile("ADMINISTRADOR")
 def register():
     if request.method == 'POST':
         identity_number = request.form['identity_number']
@@ -42,6 +42,7 @@ def register():
             new_person.set_username()
             new_person.set_password()
             db.session.add(new_person)
+            db.session.commit()
 
             if user_type == 'ESTUDIANTE':
                 new_student = Student(person_id=new_person.id)
