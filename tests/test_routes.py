@@ -7,6 +7,7 @@ def test_routes(test_client):
     # Test login
     response = test_client.post("/login/", data={"username":"sdarnes", "password":"44011774"})
     assert response.status_code == 302  # Al ingresar, me redirecciona
+    test_client.get("/home/switch_profile/1")
     response = test_client.get("/home/student")
     assert response.status_code == 200  # Me deja ingresar a la pagina principal despues del login
     

@@ -3,9 +3,8 @@ name: Run Tests
 on:
   push:
     branches:
-    # - main
-    # - dev
-    - githubActions
+    - main
+    - dev
   pull_request:
 
 jobs:
@@ -14,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Acción para obtener el código del repositorio
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -31,5 +30,5 @@ jobs:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
       run: |
-        python -m pytest
+        python -m pytest -W ignore::DeprecationWarning
 
