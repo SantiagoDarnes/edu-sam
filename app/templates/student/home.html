@@ -11,6 +11,31 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Bienvenido a la página principal</h3>
-    <p>Esta es la página principal del Gestor Académico.</p>
+<div class="student-home-container">
+    <h3>Período Académico Actual</h3>
+    
+    <div class="academic-period-card">
+        <h4>Información General</h4>
+        <ul class="period-details">
+            <li><strong>Inicio del Período:</strong> {{ academic_period.start_date }}</li>
+            <li><strong>Fin del Período:</strong> {{ academic_period.end_date }}</li>
+            <li><strong>Inicio de Inscripciones:</strong> {{ academic_period.inscription_start_date }}</li>
+            <li><strong>Fin de Inscripciones:</strong> {{ academic_period.inscription_end_date }}</li>
+        </ul>
+    </div>
+
+    <div class="academic-period-actions">
+        <h4>Acciones Disponibles</h4>
+        <div class="actions-grid">
+            <a href="{{ url_for('subject_registration.index') }}" class="action-card">
+                <i class="fas fa-book"></i>
+                Inscribir Materias
+            </a>
+            <a href="{{ url_for('exam_registration.index') }}" class="action-card">
+                <i class="fas fa-pencil-alt"></i>
+                Inscribir Exámenes
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
